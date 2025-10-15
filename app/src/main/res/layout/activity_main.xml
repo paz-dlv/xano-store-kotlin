@@ -11,10 +11,10 @@
         android:id="@+id/cardLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="0dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
         app:cardCornerRadius="20dp"
         app:cardElevation="10dp"
         android:background="@color/cardColor"
@@ -27,9 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="24dp">
-
-
+            android:padding="32dp">
 
             <FrameLayout
                 android:layout_width="96dp"
@@ -50,7 +48,7 @@
                     android:layout_height="72dp"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_user_avatar"
-                    app:tint="@color/colorPrimary"
+                    app:tint="@color/white"
                     android:contentDescription="Icono de usuario" />
             </FrameLayout>
 

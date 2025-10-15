@@ -16,16 +16,19 @@
     <color name="loginBackground">#ce2380</color>
 
     <!-- Colores personalizados para vistas suaves y modernas -->
-    <color name="colorBackground">#F5F7FA</color>   <!-- Fondo general: azul-gris claro -->
-    <color name="cardColor">#FFFFFF</color>         <!-- Fondo de card: blanco -->
-    <color name="textPrimary">#374151</color>       <!-- Texto principal: gris oscuro -->
-    <color name="textSecondary">#6B7280</color>     <!-- Texto secundario: gris medio -->
-    <color name="buttonColor">#A7F3D0</color>       <!-- Botón: verde menta suave -->
-    <color name="textButton">#065F46</color>        <!-- Texto de botón: verde oscuro -->
+    <color name="colorBackground">#F5F7FA</color>
+    <color name="cardColor">#FFFFFF</color>
+    <color name="textPrimary">#374151</color>
+    <color name="textSecondary">#6B7280</color>
+    <color name="buttonColor">#A7F3D0</color>
+    <color name="textButton">#065F46</color>
 
     <!-- Colores para login moderno con magenta -->
-    <color name="colorPrimary">#FF00B4</color>            <!-- Magenta vibrante -->
-    <color name="editTextBg">#FFFFFF</color>              <!-- Fondo EditText normal -->
-    <color name="focusedEditTextBg">#FFE3F9</color>       <!-- Fondo EditText enfocado (magenta claro) -->
-    <color name="editTextStroke">#FF00B4</color>          <!-- Borde magenta -->
+    <color name="colorPrimary">#FF00B4</color>
+    <color name="editTextBg">#FFFFFF</color>
+    <color name="focusedEditTextBg">#FFE3F9</color>
+    <color name="editTextStroke">#FF00B4</color>
+
+    <!-- Color para el círculo detrás del usuario -->
+    <color name="userCircleBg">#6750A4</color>
 </resources>
