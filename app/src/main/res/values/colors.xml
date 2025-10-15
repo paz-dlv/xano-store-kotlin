@@ -21,4 +21,10 @@
     <color name="textSecondary">#6B7280</color>     <!-- Texto secundario: gris medio -->
     <color name="buttonColor">#A7F3D0</color>       <!-- Botón: verde menta suave -->
     <color name="textButton">#065F46</color>        <!-- Texto de botón: verde oscuro -->
+
+    <!-- Colores para login moderno con magenta -->
+    <color name="colorPrimary">#FF00B4</color>            <!-- Magenta vibrante -->
+    <color name="editTextBg">#FFFFFF</color>              <!-- Fondo EditText normal -->
+    <color name="focusedEditTextBg">#FFE3F9</color>       <!-- Fondo EditText enfocado (magenta claro) -->
+    <color name="editTextStroke">#FF00B4</color>          <!-- Borde magenta -->
 </resources>
