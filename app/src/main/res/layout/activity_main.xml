@@ -1,30 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@color/loginBackground">
 
-    <!-- Fondo decorativo superior -->
-    <View
-        android:id="@+id/top_decoration"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:background="@color/colorPrimary"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- Card central para el formulario de login -->
+    <!-- Card central flotando y centrada -->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        app:cardCornerRadius="24dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
+        app:cardCornerRadius="20dp"
         app:cardElevation="10dp"
-        android:background="@color/white"
+        android:background="@color/cardColor"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -34,16 +29,42 @@
             android:orientation="vertical"
             android:padding="24dp">
 
+
+
+            <FrameLayout
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="16dp">
+
+                <!-- Fondo circular decorativo -->
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/circle_bg" />
+
+                <!-- Icono de usuario encima, más grande -->
+                <ImageView
+                    android:id="@+id/ivUserIcon"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_user_avatar"
+                    app:tint="@color/colorPrimary"
+                    android:contentDescription="Icono de usuario" />
+            </FrameLayout>
+
             <!-- Título LOGIN -->
             <TextView
                 android:id="@+id/tvLoginTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Login"
+                android:text="Login *"
                 android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
                 android:textColor="@color/colorPrimary"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="14dp" />
+                android:layout_marginBottom="14dp"
+                android:fontFamily="@font/cute_dino" />
 
             <!-- Usuario -->
             <TextView
@@ -51,20 +72,22 @@
                 android:layout_height="wrap_content"
                 android:text="Nombre de usuario"
                 android:textColor="@color/textSecondary"
-                android:layout_marginBottom="4dp" />
+                android:layout_marginBottom="4dp"
+                android:fontFamily="@font/cute_dino" />
 
             <EditText
                 android:id="@+id/etUsername"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:background="@drawable/rounded_edittext"
+                android:background="@drawable/edittext_selector"
                 android:paddingStart="14dp"
                 android:paddingEnd="14dp"
                 android:hint="Ingresa tu usuario"
                 android:textColor="@color/textPrimary"
                 android:textColorHint="@color/textSecondary"
                 android:inputType="text"
-                android:layout_marginBottom="12dp" />
+                android:layout_marginBottom="12dp"
+                android:fontFamily="@font/cute_dino" />
 
             <!-- Contraseña -->
             <TextView
@@ -72,20 +95,22 @@
                 android:layout_height="wrap_content"
                 android:text="Contraseña"
                 android:textColor="@color/textSecondary"
-                android:layout_marginBottom="4dp" />
+                android:layout_marginBottom="4dp"
+                android:fontFamily="@font/cute_dino" />
 
             <EditText
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:background="@drawable/rounded_edittext"
+                android:background="@drawable/edittext_selector"
                 android:paddingStart="14dp"
                 android:paddingEnd="14dp"
                 android:hint="Ingresa tu contraseña"
                 android:textColor="@color/textPrimary"
                 android:textColorHint="@color/textSecondary"
                 android:inputType="textPassword"
-                android:layout_marginBottom="18dp" />
+                android:layout_marginBottom="18dp"
+                android:fontFamily="@font/cute_dino" />
 
             <!-- Botón LOGIN -->
             <Button
@@ -95,9 +120,9 @@
                 android:text="Login"
                 android:textStyle="bold"
                 android:textColor="@color/white"
-                android:backgroundTint="@color/colorPrimary"
                 android:background="@drawable/rounded_button"
-                android:layout_marginBottom="14dp" />
+                android:layout_marginBottom="14dp"
+                android:fontFamily="@font/cute_dino" />
 
             <!-- Link a Sign Up -->
             <TextView
@@ -110,7 +135,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
                 android:clickable="true"
-                android:focusable="true" />
+                android:focusable="true"
+                android:fontFamily="@font/cute_dino" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
