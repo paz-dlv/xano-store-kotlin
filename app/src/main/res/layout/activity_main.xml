@@ -13,8 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp"
         app:cardCornerRadius="20dp"
         app:cardElevation="10dp"
         android:background="@color/cardColor"
@@ -25,7 +25,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="621dp"
             android:orientation="vertical"
             android:padding="32dp">
 
@@ -47,9 +47,9 @@
                     android:layout_width="72dp"
                     android:layout_height="72dp"
                     android:layout_gravity="center"
+                    android:contentDescription="Icono de usuario"
                     android:src="@drawable/ic_user_avatar"
-                    app:tint="@color/white"
-                    android:contentDescription="Icono de usuario" />
+                    app:tint="@color/white" />
             </FrameLayout>
 
             <!-- Título LOGIN -->
@@ -57,84 +57,98 @@
                 android:id="@+id/tvLoginTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Login *"
-                android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
-                android:textColor="@color/colorPrimary"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="14dp"
-                android:fontFamily="@font/cute_dino" />
+                android:fontFamily="@font/cute_dino"
+                android:text="Login *"
+                android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                android:textColor="@color/colorPrimary" />
+            <!-- Espaciador extra antes del texto -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp" /> <!-- Aumenta el espacio aquí -->
 
             <!-- Usuario -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nombre de usuario"
-                android:textColor="@color/textSecondary"
                 android:layout_marginBottom="4dp"
-                android:fontFamily="@font/cute_dino" />
+                android:fontFamily="@font/cute_dino"
+                android:text="Nombre de usuario"
+                android:textColor="@color/textSecondary" />
 
             <EditText
                 android:id="@+id/etUsername"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:layout_marginBottom="12dp"
                 android:background="@drawable/edittext_selector"
+                android:fontFamily="@font/cute_dino"
+                android:hint="Ingresa tu usuario"
+                android:inputType="text"
                 android:paddingStart="14dp"
                 android:paddingEnd="14dp"
-                android:hint="Ingresa tu usuario"
                 android:textColor="@color/textPrimary"
-                android:textColorHint="@color/textSecondary"
-                android:inputType="text"
-                android:layout_marginBottom="12dp"
-                android:fontFamily="@font/cute_dino" />
+                android:textColorHint="@color/textSecondary" />
 
             <!-- Contraseña -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Contraseña"
-                android:textColor="@color/textSecondary"
                 android:layout_marginBottom="4dp"
-                android:fontFamily="@font/cute_dino" />
+                android:fontFamily="@font/cute_dino"
+                android:text="Contraseña"
+                android:textColor="@color/textSecondary" />
 
             <EditText
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:layout_marginBottom="18dp"
                 android:background="@drawable/edittext_selector"
+                android:fontFamily="@font/cute_dino"
+                android:hint="Ingresa tu contraseña"
+                android:inputType="textPassword"
                 android:paddingStart="14dp"
                 android:paddingEnd="14dp"
-                android:hint="Ingresa tu contraseña"
                 android:textColor="@color/textPrimary"
-                android:textColorHint="@color/textSecondary"
-                android:inputType="textPassword"
-                android:layout_marginBottom="18dp"
-                android:fontFamily="@font/cute_dino" />
+                android:textColorHint="@color/textSecondary" />
+
+            <!-- Espaciador extra antes del botón -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp" /> <!-- Aumenta el espacio aquí -->
 
             <!-- Botón LOGIN -->
             <Button
                 android:id="@+id/btnLogin"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:text="Login"
-                android:textStyle="bold"
-                android:textColor="@color/white"
+                android:layout_marginBottom="24dp"
                 android:background="@drawable/rounded_button"
-                android:layout_marginBottom="14dp"
-                android:fontFamily="@font/cute_dino" />
+                android:fontFamily="@font/cute_dino"
+                android:text="Login"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <!-- Espaciador extra antes del link -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="32dp" />
 
             <!-- Link a Sign Up -->
             <TextView
                 android:id="@+id/tvSignUpLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="¿No tienes cuenta? Regístrate"
-                android:textColor="@color/colorPrimary"
-                android:textSize="15sp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:fontFamily="@font/cute_dino" />
+                android:fontFamily="@font/cute_dino"
+                android:text="¿No tienes cuenta? Regístrate"
+                android:textColor="@color/colorPrimary"
+                android:textSize="15sp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
