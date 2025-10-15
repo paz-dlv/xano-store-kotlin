@@ -43,6 +43,34 @@
                 android:textColor="@color/textPrimary"
                 android:text="Nombre" />
 
+            <!-- NUEVOS CAMPOS -->
+            <TextView
+                android:id="@+id/tvAuthor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="@color/textSecondary"
+                android:text="Autor"
+                android:layout_marginTop="2dp"/>
+
+            <TextView
+                android:id="@+id/tvGenre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="@color/textSecondary"
+                android:text="Género"
+                android:layout_marginTop="2dp"/>
+
+            <TextView
+                android:id="@+id/tvStock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="@color/textSecondary"
+                android:text="Stock"
+                android:layout_marginTop="2dp"/>
+
             <TextView
                 android:id="@+id/tvDescription"
                 android:layout_width="match_parent"
