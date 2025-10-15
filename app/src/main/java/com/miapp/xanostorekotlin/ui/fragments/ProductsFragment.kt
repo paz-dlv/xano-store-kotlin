@@ -22,7 +22,7 @@ import kotlinx.coroutines.withContext // Cambio de contexto en corrutinas
  * Explicación:
  * - Obtiene la lista de productos desde la API de Xano usando corrutinas.
  * - Muestra los productos en un RecyclerView.
- * - Incluye una barra de búsqueda para buscar por nombre (filtrado local).
+ * - Incluye una barra de búsqueda para buscar por título (filtrado local, antes era por nombre).
  */
 class ProductsFragment : Fragment() { // Fragment que lista y filtra productos
 
@@ -68,12 +68,13 @@ class ProductsFragment : Fragment() { // Fragment que lista y filtra productos
         })
     }
 
-    private fun filter(query: String?) { // Filtra lista local por nombre
+    private fun filter(query: String?) { // Filtra lista local por título (antes por nombre)
         val q = query?.trim()?.lowercase().orEmpty() // Normalizamos query a minúsculas
         if (q.isBlank()) { // Si vacío, mostramos todos
             adapter.updateData(allProducts) // Reset
         } else {
-            adapter.updateData(allProducts.filter { it.name.lowercase().contains(q) }) // Filtro simple
+            // Cambiamos el filtro para usar el campo 'title' del producto
+            adapter.updateData(allProducts.filter { it.title.lowercase().contains(q) }) // Filtrado local por título
         }
     }
 
