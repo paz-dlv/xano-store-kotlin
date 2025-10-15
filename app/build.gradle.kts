@@ -16,9 +16,9 @@ android { // Bloque principal de configuración Android
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner" // Runner para tests instrumentados
         // Configuración de endpoints Xano (reemplaza los valores por los tuyos)
-        buildConfigField("String", "XANO_STORE_BASE", "\"/\"") // Base URL Store (Xano)
-        buildConfigField("String", "XANO_AUTH_BASE", "\"/\"") // Base URL Auth (Xano)
-        buildConfigField("int", "XANO_TOKEN_TTL_SEC", "86400") // TTL de token simulado
+        buildConfigField("String", "base_xano", "\"https://x8ki-letl-twmt.n7.xano.io/api:6Vhgj82e/\"") // Base URL Store (Xano)
+        buildConfigField("String", "base_xano", "\"https://x8ki-letl-twmt.n7.xano.io/api:PxLo7NSi/\"") // Base URL Auth (Xano)
+        buildConfigField("int", "base_xano", "86400") // TTL de token simulado
     }
 
     buildTypes { // Tipos de build (debug/release)
