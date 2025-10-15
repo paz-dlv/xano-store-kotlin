@@ -10,23 +10,23 @@ data class Product( // data class: genera automáticamente métodos útiles como
     // Identificador único del producto, viene como un número entero del JSON.
     val id: Int,
 
-    // Nombre del producto, viene como un string del JSON.
-    val name: String,
+    // Nombre del producto.
+    val title: String,
 
-    // Descripción del producto, puede ser nula.
+    // Autor del producto.
+    val author: String,
+
+    // Género del producto.
+    val genre: String,
+
+    // Descripción del producto.
     val description: String?,
 
-    // Precio del producto, puede ser nulo. Lo definimos como Int según tu JSON.
-    val price: Int?,
+    // Precio del producto (decimal).
+    val price: Double,
 
     // Stock disponible del producto.
     val stock: Int,
-
-    // Marca del producto.
-    val brand: String,
-
-    // Categoría del producto.
-    val category: String,
 
     // ¡¡CAMBIO FUNDAMENTAL!!
     // La API no devuelve 'image_url', sino una lista llamada 'images'.
