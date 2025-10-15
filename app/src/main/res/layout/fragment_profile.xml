@@ -1,31 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Fragmento de Perfil: muestra nombre y email del usuario -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:background="@color/colorBackground">
 
-    <TextView
-        android:id="@+id/tvName"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:text="Nombre"/>
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="24dp">
 
-    <TextView
-        android:id="@+id/tvEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Email"/>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:backgroundTint="@color/cardColor"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="16dp">
 
-    <!-- Botón de cerrar sesión -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnLogout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Cerrar sesión"
-        android:layout_marginTop="16dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:padding="24dp">
 
-</LinearLayout>
+                <ImageView
+                    android:id="@+id/imgAvatar"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginBottom="16dp"
+                    android:src="@drawable/ic_user_avatar"
+                    android:background="@drawable/circle_bg"
+                    android:scaleType="centerCrop" />
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="@color/textPrimary"
+                    android:text="Nombre" />
+
+                <TextView
+                    android:id="@+id/tvEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/textSecondary"
+                    android:text="Email" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Cerrar sesión"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:textColor="@color/textButton"
+            android:backgroundTint="@color/buttonColor" />
+    </LinearLayout>
+</ScrollView>

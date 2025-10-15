@@ -1,66 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  Layout de la Activity de Login.
-  Usamos Material TextInputLayout para email y password, y un botón de login.
-  Con viewBinding activado, se generará ActivityMainBinding.
--->
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp">
+    android:background="@color/colorBackground">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilEmail"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:hint="Email">
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="32dp">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etEmail"
+        <!-- Logo de usuario -->
+        <ImageView
+            android:id="@+id/imgLogoUser"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:src="@drawable/ic_user_avatar"
+            android:background="@drawable/circle_bg"
+            android:layout_marginTop="36dp"
+            android:layout_marginBottom="18dp"
+            android:scaleType="centerCrop"/>
+
+        <!-- Subtítulo de bienvenida -->
+        <TextView
+            android:id="@+id/tvWelcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bienvenido a Librería Online"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_register_selector"
+            android:layout_marginBottom="28dp"/>
+
+        <!-- Campo de email (Material TextInputLayout) -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:hint="Email"
+            android:layout_marginBottom="16dp">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilPassword"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tilEmail"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:hint="Password">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/textPrimary"
+                android:textColorHint="@color/textSecondary"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etPassword"
+        <!-- Campo de password (Material TextInputLayout) -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:hint="Contraseña"
+            android:layout_marginBottom="24dp">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnLogin"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Iniciar sesión"
-        app:layout_constraintTop_toBottomOf="@id/tilPassword"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textColor="@color/textPrimary"
+                android:textColorHint="@color/textSecondary"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <ProgressBar
-        android:id="@+id/progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/btnLogin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:visibility="gone" />
+        <!-- Botón de iniciar sesión -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Iniciar sesión"
+            style="@style/Widget.MaterialComponents.Button"
+            android:textColor="@color/textButton"
+            android:backgroundTint="@color/buttonColor"
+            android:cornerRadius="14dp"
+            android:layout_marginBottom="16dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- ProgressBar -->
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"/>
+
+        <!-- Texto para registro -->
+        <TextView
+            android:id="@+id/tvRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¿No tienes cuenta? Regístrate"
+            android:textColor="@color/md_theme_primary"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:focusable="true" />
+
+    </LinearLayout>
+</ScrollView>

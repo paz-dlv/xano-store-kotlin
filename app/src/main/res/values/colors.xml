@@ -13,4 +13,12 @@
     <color name="teal_200">#03DAC5</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
+
+    <!-- Colores personalizados para vistas suaves y modernas -->
+    <color name="colorBackground">#F5F7FA</color>   <!-- Fondo general: azul-gris claro -->
+    <color name="cardColor">#FFFFFF</color>         <!-- Fondo de card: blanco -->
+    <color name="textPrimary">#374151</color>       <!-- Texto principal: gris oscuro -->
+    <color name="textSecondary">#6B7280</color>     <!-- Texto secundario: gris medio -->
+    <color name="buttonColor">#A7F3D0</color>       <!-- Botón: verde menta suave -->
+    <color name="textButton">#065F46</color>        <!-- Texto de botón: verde oscuro -->
 </resources>
