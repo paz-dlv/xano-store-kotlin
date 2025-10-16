@@ -29,7 +29,6 @@ class HomeActivity : AppCompatActivity() { // Declaramos la Activity Home, que g
         setContentView(binding.root) // Establecemos la vista raíz del binding como contenido de la Activity
 
         tokenManager = TokenManager(this) // Inicializamos el TokenManager con el contexto de la Activity
-        binding.tvWelcome.text = "Bienvenido ${tokenManager.getUserName()}" // Mostramos saludo con el nombre del usuario
 
         // Cargamos inicialmente el fragmento de Productos
         replaceFragment(ProductsFragment()) // Reemplazamos el contenedor por el fragmento de productos

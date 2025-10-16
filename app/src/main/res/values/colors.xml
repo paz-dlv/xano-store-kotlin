@@ -13,7 +13,7 @@
     <color name="teal_200">#03DAC5</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
-    <color name="loginBackground">#B77E9E</color>
+    <color name="loginBackground">#E5D9F7</color>
 
     <!-- Colores personalizados para vistas suaves y modernas -->
     <color name="colorBackground">#F5F7FA</color>
@@ -24,10 +24,10 @@
     <color name="textButton">#065F46</color>
 
     <!-- Colores para login moderno con magenta -->
-    <color name="colorPrimary">#FF00B4</color>
+    <color name="colorPrimary">#E5D9F7</color>
     <color name="editTextBg">#FFFFFF</color>
     <color name="focusedEditTextBg">#FFE3F9</color>
-    <color name="editTextStroke">#FF00B4</color>
+    <color name="editTextStroke">#E5D9F7</color>
 
     <!-- Color para el círculo detrás del usuario -->
     <color name="userCircleBg">#6750A4</color>

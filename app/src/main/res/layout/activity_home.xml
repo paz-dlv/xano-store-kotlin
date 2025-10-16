@@ -24,6 +24,10 @@
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:menu="@menu/bottom_nav_menu" />
-
+        android:background="@drawable/rounded_bottom_nav"
+        app:itemBackground="@drawable/bottom_nav_item_background"
+        app:itemIconTint="@color/bottom_nav_icon_color"
+        app:itemTextColor="@color/bottom_nav_text_color"
+        app:menu="@menu/bottom_nav_menu"
+        android:elevation="12dp"/>
 </LinearLayout>
