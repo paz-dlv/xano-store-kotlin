@@ -1,9 +1,16 @@
 package com.miapp.xanostorekotlin
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.miapp.xanostorekotlin.api.AuthService
+import com.miapp.xanostorekotlin.api.RetrofitClient
 import com.miapp.xanostorekotlin.model.RegisterUserRequest
+import com.miapp.xanostorekotlin.model.User
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -33,9 +40,55 @@ class SignUpActivity : AppCompatActivity() {
                     shipping_address = address,
                     phone = phone
                 )
-                // Aquí iría la llamada a la API (Retrofit)
-                Toast.makeText(this, "¡Registrando usuario!", Toast.LENGTH_SHORT).show()
-                // TODO: Implementa la llamada y el manejo de respuesta
+
+                val authService = RetrofitClient.instance.create(AuthService::class.java)
+                authService.signUp(request).enqueue(object : Callback<User> {
+                    override fun onResponse(call: Call<User>, response: Response<User>) {
+                        if (response.isSuccessful && response.body() != null) {
+                            val usuario = response.body()!!
+
+                            // Guardar el usuario en SharedPreferences
+                            val prefs = getSharedPreferences("user_session", MODE_PRIVATE)
+                            prefs.edit().apply {
+                                putInt("id", usuario.id)
+                                putString("name", usuario.name)
+                                putString("email", usuario.email)
+                                putString("phone", usuario.phone)
+                                putString("shipping_address", usuario.shippingAddress)
+                                putString("role", usuario.role)
+                                putString("status", usuario.status)
+                                putString("lastname", usuario.lastname)
+                                putString("created_at", usuario.createdAt.toString())
+                                apply()
+                            }
+
+                            Toast.makeText(
+                                this@SignUpActivity,
+                                "¡Registro exitoso! Bienvenido ${usuario.name}",
+                                Toast.LENGTH_LONG
+                            ).show()
+
+                            // Navegar automáticamente a HomeActivity y cerrar esta
+                            val intent = Intent(this@SignUpActivity, HomeActivity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            startActivity(intent)
+                        } else {
+                            Toast.makeText(
+                                this@SignUpActivity,
+                                "Error en el registro. Verifica tus datos.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<User>, t: Throwable) {
+                        Toast.makeText(
+                            this@SignUpActivity,
+                            "Error de red: ${t.message}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                })
             }
         }
     }
