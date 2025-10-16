@@ -65,6 +65,7 @@ dependencies { // Dependencias del módulo
     // Imágenes
     implementation(libs.coil)
     implementation(libs.androidx.activity)
+    implementation(libs.mediation.test.suite)
 
     testImplementation(libs.junit) // Unit testing con JUnit4
     androidTestImplementation(libs.androidx.junit) // Testing instrumentado (JUnit ext)

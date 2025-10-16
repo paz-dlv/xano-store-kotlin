@@ -4,13 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.miapp.xanostorekotlin.api.AuthService
+import com.google.android.ads.mediationtestsuite.activities.HomeActivity
 import com.miapp.xanostorekotlin.api.RetrofitClient
 import com.miapp.xanostorekotlin.model.RegisterUserRequest
 import com.miapp.xanostorekotlin.model.User
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import org.json.JSONObject
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -41,7 +42,7 @@ class SignUpActivity : AppCompatActivity() {
                     phone = phone
                 )
 
-                val authService = RetrofitClient.instance.create(AuthService::class.java)
+                val authService = RetrofitClient.createAuthService(this)
                 authService.signUp(request).enqueue(object : Callback<User> {
                     override fun onResponse(call: Call<User>, response: Response<User>) {
                         if (response.isSuccessful && response.body() != null) {
@@ -73,10 +74,13 @@ class SignUpActivity : AppCompatActivity() {
                             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                             startActivity(intent)
                         } else {
+                            // Mejor manejo de mensajes de error
+                            val errorBody = response.errorBody()?.string()
+                            val errorMessage = parseErrorMessage(errorBody)
                             Toast.makeText(
                                 this@SignUpActivity,
-                                "Error en el registro. Verifica tus datos.",
-                                Toast.LENGTH_SHORT
+                                errorMessage,
+                                Toast.LENGTH_LONG
                             ).show()
                         }
                     }
@@ -90,6 +94,30 @@ class SignUpActivity : AppCompatActivity() {
                     }
                 })
             }
+        }
+    }
+
+    // Extrae el mensaje de error para mostrarlo al usuario
+    private fun parseErrorMessage(errorBody: String?): String {
+        if (errorBody.isNullOrEmpty()) {
+            return "Error en el registro. Verifica tus datos."
+        }
+        return try {
+            val json = JSONObject(errorBody)
+            when {
+                json.has("message") && json.getString("message").contains("email", ignoreCase = true) &&
+                        json.getString("message").contains("exists", ignoreCase = true) ->
+                    "El correo electrónico ya está registrado."
+                json.has("message") -> json.getString("message")
+                else -> "Error en el registro. Verifica tus datos."
+            }
+        } catch (e: Exception) {
+            // Si el error no es JSON, usa heurística simple
+            if (errorBody.contains("email", ignoreCase = true) &&
+                errorBody.contains("exist", ignoreCase = true)) {
+                return "El correo electrónico ya está registrado."
+            }
+            "Error en el registro. Verifica tus datos."
         }
     }
 
