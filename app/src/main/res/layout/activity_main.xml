@@ -25,7 +25,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="621dp"
+            android:layout_height="672dp"
             android:orientation="vertical"
             android:padding="32dp">
 
@@ -146,12 +146,12 @@
             <!-- ProgressBar (AGREGADO) -->
             <ProgressBar
                 android:id="@+id/progress"
+                style="?android:attr/progressBarStyleLarge"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="14dp"
-                android:visibility="gone"
-                style="?android:attr/progressBarStyleLarge"/>
+                android:visibility="gone" />
 
             <!-- Botón LOGIN -->
             <Button
@@ -164,6 +164,20 @@
                 android:text="Login"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
+            <!-- ¿No tienes cuenta? Regístrate (funcional) -->
+            <TextView
+                android:id="@+id/tvSignUpLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/cute_dino"
+                android:padding="8dp"
+                android:text="¿No tienes cuenta? Regístrate"
+                android:textColor="@color/colorPrimary"
+                android:textSize="15sp" />
 
             <!-- ¿Olvidaste tu contraseña? (funcional) -->
             <TextView
@@ -184,19 +198,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="16dp" />
 
-            <!-- Link a Sign Up (funcional) -->
-            <TextView
-                android:id="@+id/tvSignUpLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:fontFamily="@font/cute_dino"
-                android:text="¿No tienes cuenta? Regístrate"
-                android:textColor="@color/colorPrimary"
-                android:textSize="15sp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
