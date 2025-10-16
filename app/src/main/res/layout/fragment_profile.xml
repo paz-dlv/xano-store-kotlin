@@ -12,11 +12,12 @@
         android:padding="24dp">
 
         <androidx.cardview.widget.CardView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:backgroundTint="@color/cardColor"
-            app:cardElevation="4dp"
+            app:cardelevation="4dp"
             app:cardCornerRadius="16dp">
 
             <LinearLayout
