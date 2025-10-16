@@ -37,6 +37,13 @@ class MainActivity : AppCompatActivity() { // Activity principal de login
 
         tokenManager = TokenManager(this) // Inicializamos TokenManager con contexto
 
+
+        // Listener para el link de registro:
+        binding.tvSignUpLink.setOnClickListener {
+            val intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent)
+        }
+
         // Si ya hay sesión, vamos directo a Home
         if (tokenManager.isLoggedIn()) { // Consultamos si hay token guardado
             goToHome() // Navegamos a Home
