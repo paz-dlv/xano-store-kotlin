@@ -12,102 +12,120 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Título del libro -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Título del libro"
-            app:boxStrokeColor="@color/colorPrimary">
+            android:text="Título del libro"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_marginBottom="4dp" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Ej: El Principito"
-                android:inputType="textCapWords"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <!-- Autor del libro -->
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
+            android:id="@+id/etTitle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Autor"
-            android:layout_marginTop="8dp"
-            app:boxStrokeColor="@color/colorPrimary">
+            android:layout_height="48dp"
+            android:hint="Ej: El Principito"
+            android:background="@drawable/input_background"
+            android:padding="12dp"
+            android:textSize="15sp"/>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etAuthor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Ej: Antoine de Saint-Exupéry"
-                android:inputType="textCapWords"/>
-        </com.google.android.material.textfield.TextInputLayout>
+        <!-- Autor -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Autor"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="4dp" />
+
+        <EditText
+            android:id="@+id/etAuthor"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Ej: Antoine de Saint-Exupéry"
+            android:background="@drawable/input_background"
+            android:padding="12dp"
+            android:textSize="15sp"/>
 
         <!-- Género -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Género"
-            android:layout_marginTop="8dp"
-            app:boxStrokeColor="@color/colorPrimary">
+            android:text="Género"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="4dp" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etGenre"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Ej: Literatura Infantil"
-                android:inputType="textCapWords"/>
-        </com.google.android.material.textfield.TextInputLayout>
+        <EditText
+            android:id="@+id/etGenre"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Ej: Literatura Infantil"
+            android:background="@drawable/input_background"
+            android:padding="12dp"
+            android:textSize="15sp"/>
 
         <!-- Descripción -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Descripción"
-            android:layout_marginTop="8dp"
-            app:boxStrokeColor="@color/colorPrimary">
+            android:text="Descripción"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="4dp" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Describe el libro"
-                android:inputType="textMultiLine"
-                android:minLines="3"
-                android:gravity="top"/>
-        </com.google.android.material.textfield.TextInputLayout>
+        <EditText
+            android:id="@+id/etDescription"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:hint="Ej: Libro para todas las edades"
+            android:background="@drawable/input_background"
+            android:padding="12dp"
+            android:textSize="15sp"
+            android:gravity="top"/>
 
         <!-- Precio -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Precio"
-            android:layout_marginTop="8dp"
-            app:boxStrokeColor="@color/colorPrimary">
+            android:text="Precio"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="4dp" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etPrice"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Ej: 9990"
-                android:inputType="numberDecimal"/>
-        </com.google.android.material.textfield.TextInputLayout>
+        <EditText
+            android:id="@+id/etPrice"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Ej: 12000"
+            android:background="@drawable/input_background"
+            android:padding="12dp"
+            android:textSize="15sp"
+            android:inputType="number"/>
 
         <!-- Stock -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Stock"
-            android:layout_marginTop="8dp"
-            app:boxStrokeColor="@color/colorPrimary">
+            android:text="Stock"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="4dp" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etStock"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Ej: 25"
-                android:inputType="number"/>
-        </com.google.android.material.textfield.TextInputLayout>
+        <EditText
+            android:id="@+id/etStock"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Ej: 10"
+            android:background="@drawable/input_background"
+            android:padding="12dp"
+            android:textSize="15sp"
+            android:inputType="number"/>
 
         <!-- Botón para seleccionar imágenes -->
         <com.google.android.material.button.MaterialButton
