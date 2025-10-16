@@ -1,10 +1,10 @@
-package com.miapp.xanostorekotlin
+package com.miapp.xanostorekotlin.ui
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.ads.mediationtestsuite.activities.HomeActivity
+import com.miapp.xanostorekotlin.R
 import com.miapp.xanostorekotlin.api.RetrofitClient
 import com.miapp.xanostorekotlin.model.RegisterUserRequest
 import com.miapp.xanostorekotlin.model.User
@@ -12,6 +12,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import org.json.JSONObject
+
+// Import correcto de HomeActivity:
+import com.miapp.xanostorekotlin.ui.HomeActivity
 
 class SignUpActivity : AppCompatActivity() {
 
