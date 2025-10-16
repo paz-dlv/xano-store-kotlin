@@ -82,8 +82,7 @@ class ProductsFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             try {
                 // Pasa el baseUrl correctamente
-                val service = RetrofitClient.createProductService(requireContext(), ApiConfig.storeBaseUrl)
-                // La interfaz debe tener suspend fun getProducts(): List<Product>
+                val service = RetrofitClient.createProductService(requireContext())
                 val products = withContext(Dispatchers.IO) {
                     service.getProducts()
                 }
