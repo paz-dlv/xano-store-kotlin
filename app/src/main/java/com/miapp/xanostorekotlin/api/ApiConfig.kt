@@ -11,7 +11,9 @@ import com.miapp.xanostorekotlin.BuildConfig // Import de constantes generadas p
  * - XANO_TOKEN_TTL_SEC: TTL de respaldo para tokens JWE
  */
 object ApiConfig { // Objeto singleton con configuración básica de API
-    val storeBaseUrl: String = BuildConfig.XANO_STORE_BASE // URL base para endpoints de tienda/productos
-    val authBaseUrl: String = BuildConfig.XANO_AUTH_BASE // URL base para endpoints de autenticación
-    val tokenTtlSec: Int = BuildConfig.XANO_TOKEN_TTL_SEC // Tiempo de vida de token (segundos) opcional
+    val storeBaseUrl: String = "https://x8ki-letl-twmt.n7.xano.io/api:6Vhgj82e/" // URL base para endpoints de tienda/productos
+    val authBaseUrl: String = "https://x8ki-letl-twmt.n7.xano.io/api:PxLo7NSi/" // URL base para endpoints de autenticación
+    val tokenTtlSec: Int = 86400 // Tiempo de vida (TTL) en segundos para tokens simulados
+
+
 }

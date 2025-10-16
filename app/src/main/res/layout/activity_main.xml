@@ -16,7 +16,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginBottom="40dp"
         app:cardCornerRadius="20dp"
-        app:cardelevation="10dp"
+        app:cardElevation="10dp"
         android:background="@color/cardColor"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -63,10 +63,11 @@
                 android:text="Login *"
                 android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
                 android:textColor="@color/colorPrimary" />
+
             <!-- Espaciador extra antes del texto -->
             <View
                 android:layout_width="match_parent"
-                android:layout_height="30dp" /> <!-- Aumenta el espacio aquí -->
+                android:layout_height="30dp" />
 
             <!-- Usuario -->
             <TextView
@@ -86,6 +87,29 @@
                 android:fontFamily="@font/cute_dino"
                 android:hint="Ingresa tu usuario"
                 android:inputType="text"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:textColor="@color/textPrimary"
+                android:textColorHint="@color/textSecondary" />
+
+            <!-- Email (AGREGADO) -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:fontFamily="@font/cute_dino"
+                android:text="Email"
+                android:textColor="@color/textSecondary" />
+
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/edittext_selector"
+                android:fontFamily="@font/cute_dino"
+                android:hint="Ingresa tu email"
+                android:inputType="textEmailAddress"
                 android:paddingStart="14dp"
                 android:paddingEnd="14dp"
                 android:textColor="@color/textPrimary"
@@ -117,7 +141,17 @@
             <!-- Espaciador extra antes del botón -->
             <View
                 android:layout_width="match_parent"
-                android:layout_height="30dp" /> <!-- Aumenta el espacio aquí -->
+                android:layout_height="30dp" />
+
+            <!-- ProgressBar (AGREGADO) -->
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="14dp"
+                android:visibility="gone"
+                style="?android:attr/progressBarStyleLarge"/>
 
             <!-- Botón LOGIN -->
             <Button
