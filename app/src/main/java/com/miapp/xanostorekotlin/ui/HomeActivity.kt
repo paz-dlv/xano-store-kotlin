@@ -1,5 +1,6 @@
 package com.miapp.xanostorekotlin.ui // Paquete de la Activity principal de la app
 
+import android.content.Intent // Import para navegación entre activities
 import android.os.Bundle // Import para ciclo de vida de Activity y estado
 import androidx.appcompat.app.AppCompatActivity // Import de la Activity base con compatibilidad
 import androidx.fragment.app.Fragment // Import de la clase Fragment (para transacciones)
@@ -17,6 +18,7 @@ import com.miapp.xanostorekotlin.ui.fragments.ProfileFragment // Import del frag
  * - Contiene un BottomNavigationView para navegar entre 3 fragments:
  *   Perfil, Productos y Agregar Producto.
  * - No usamos Navigation Component para mantenerlo sencillo; hacemos transacciones manuales.
+ * - Ahora valida que el usuario esté presente, si no redirige a MainActivity (login).
  */
 class HomeActivity : AppCompatActivity() { // Declaramos la Activity Home, que gestiona los fragments
 
@@ -29,7 +31,19 @@ class HomeActivity : AppCompatActivity() { // Declaramos la Activity Home, que g
         setContentView(binding.root) // Establecemos la vista raíz del binding como contenido de la Activity
 
         tokenManager = TokenManager(this) // Inicializamos el TokenManager con el contexto de la Activity
-        binding.tvWelcome.text = "Bienvenido ${tokenManager.getUserName()}" // Mostramos saludo con el nombre del usuario
+
+        // --- Validación de usuario ---
+        val prefs = getSharedPreferences("user_session", MODE_PRIVATE) // Accedemos a la sesión guardada
+        val userName = prefs.getString("name", null) // Recuperamos el nombre de usuario
+        if (userName.isNullOrBlank()) { // Si no hay usuario, volvemos al login
+            val intent = Intent(this, MainActivity::class.java) // Creamos el Intent para ir a MainActivity
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // Limpiamos el stack de navegación
+            startActivity(intent) // Iniciamos MainActivity
+            finish() // Cerramos esta Activity
+            return // Salimos de onCreate
+        }
+
+        binding.tvWelcome.text = "Bienvenido $userName" // Mostramos saludo con el nombre del usuario
 
         // Cargamos inicialmente el fragmento de Productos
         replaceFragment(ProductsFragment()) // Reemplazamos el contenedor por el fragmento de productos

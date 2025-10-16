@@ -8,7 +8,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.miapp.xanostorekotlin.SignUpActivity
 import com.miapp.xanostorekotlin.api.RetrofitClient
 import com.miapp.xanostorekotlin.api.TokenManager
 import com.miapp.xanostorekotlin.databinding.ActivityMainBinding
@@ -32,7 +31,8 @@ class MainActivity : AppCompatActivity() {
         // --- Chequeo de sesión por usuario guardado (registro) ---
         val prefs = getSharedPreferences("user_session", Context.MODE_PRIVATE)
         val userId = prefs.getInt("id", -1)
-        if (userId != -1) {
+        val userName = prefs.getString("name", null)
+        if (userId != -1 && !userName.isNullOrBlank()) {
             goToHome()
             return
         }
@@ -72,6 +72,21 @@ class MainActivity : AppCompatActivity() {
                     val privateAuthService = RetrofitClient.createAuthService(this@MainActivity, requiresAuth = true)
                     val userProfile = withContext(Dispatchers.IO) {
                         privateAuthService.getMe()
+                    }
+
+                    // Guardar usuario en SharedPreferences para HomeActivity
+                    val prefs = getSharedPreferences("user_session", Context.MODE_PRIVATE)
+                    prefs.edit().apply {
+                        putInt("id", userProfile.id)
+                        putString("name", userProfile.name)
+                        putString("email", userProfile.email)
+                        putString("phone", userProfile.phone ?: "")
+                        putString("shipping_address", userProfile.shippingAddress ?: "")
+                        putString("role", userProfile.role ?: "")
+                        putString("status", userProfile.status ?: "")
+                        putString("lastname", userProfile.lastname ?: "")
+                        putString("created_at", userProfile.createdAt?.toString() ?: "")
+                        apply()
                     }
 
                     tokenManager.saveAuth(
