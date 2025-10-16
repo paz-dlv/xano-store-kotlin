@@ -29,6 +29,7 @@ data class CreateProductRequest(
     // GSON lo convertirá a: "name": "Teclado Mecánico"
     val name: String,
 
+    val title: String,
 
     val author: String,
 

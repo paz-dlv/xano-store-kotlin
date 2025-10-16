@@ -10,6 +10,8 @@ data class Product( // data class: genera automáticamente métodos útiles como
     // Identificador único del producto, viene como un número entero del JSON.
     val id: Int,
 
+    val title: String,
+
     // Nombre del producto, viene como un string del JSON.
     val author: String,
 
