@@ -21,16 +21,20 @@
         <activity
             android:name=".ui.ForgotPasswordActivity"
             android:exported="false" />
+        <!-- Activity de registro -->
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="false" />
         <!-- Activity principal: Login -->
         <activity
             android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- Activity secundaria: Home con Bottom Navigation -->
+        </activity>
+        <!-- Activity secundaria: Home con Bottom Navigation -->
         <activity
             android:name=".ui.HomeActivity"
             android:exported="false" />
