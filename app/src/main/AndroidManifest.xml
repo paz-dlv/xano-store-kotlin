@@ -17,6 +17,10 @@
         <activity
             android:name=".ui.ProductDetailActivity"
             android:exported="false" />
+        <!-- Activity que nos "recupera" la contraseña -->
+        <activity
+            android:name=".ui.ForgotPasswordActivity"
+            android:exported="false" />
         <!-- Activity principal: Login -->
         <activity
             android:name=".ui.MainActivity"

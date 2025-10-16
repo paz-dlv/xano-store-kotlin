@@ -158,19 +158,33 @@
                 android:id="@+id/btnLogin"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="12dp"
                 android:background="@drawable/rounded_button"
                 android:fontFamily="@font/cute_dino"
                 android:text="Login"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 
+            <!-- ¿Olvidaste tu contraseña? (funcional) -->
+            <TextView
+                android:id="@+id/tvForgotPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/cute_dino"
+                android:text="¿Olvidaste tu contraseña?"
+                android:textColor="@color/colorPrimary"
+                android:textSize="15sp" />
+
             <!-- Espaciador extra antes del link -->
             <View
                 android:layout_width="match_parent"
-                android:layout_height="32dp" />
+                android:layout_height="16dp" />
 
-            <!-- Link a Sign Up -->
+            <!-- Link a Sign Up (funcional) -->
             <TextView
                 android:id="@+id/tvSignUpLink"
                 android:layout_width="wrap_content"

@@ -92,6 +92,16 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+        // --- Link a pantalla de registro ---
+        binding.tvSignUpLink.setOnClickListener {
+            startActivity(Intent(this, SignUpActivity::class.java))
+        }
+
+        // --- Link a pantalla de recuperación de contraseña ---
+        binding.tvForgotPassword.setOnClickListener {
+            startActivity(Intent(this, ForgotPasswordActivity::class.java))
+        }
     }
 
     private fun goToHome() {
