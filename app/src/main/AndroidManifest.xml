@@ -15,9 +15,6 @@
             android:name=".ui.ProductDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.ForgotPasswordActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.SignUpActivity"
             android:exported="false" />
         <activity
