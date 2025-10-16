@@ -2,18 +2,19 @@ package com.miapp.xanostorekotlin.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.miapp.xanostorekotlin.R
 import com.miapp.xanostorekotlin.api.RetrofitClient
 import com.miapp.xanostorekotlin.model.RegisterUserRequest
+import com.miapp.xanostorekotlin.model.LoginRequest
 import com.miapp.xanostorekotlin.model.User
+import com.miapp.xanostorekotlin.model.LoginResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import org.json.JSONObject
-
-// Import correcto de HomeActivity:
 import com.miapp.xanostorekotlin.ui.HomeActivity
 
 class SignUpActivity : AppCompatActivity() {
@@ -62,20 +63,51 @@ class SignUpActivity : AppCompatActivity() {
                                 putString("role", usuario.role ?: "")
                                 putString("status", usuario.status ?: "")
                                 putString("lastname", usuario.lastname ?: "")
-                                putString("created_at", usuario.createdAt?.toString() ?: "")
+                                putString("created_at", usuario.createdAt ?: "")
                                 apply()
                             }
 
-                            Toast.makeText(
-                                this@SignUpActivity,
-                                "¡Registro exitoso! Bienvenido ${usuario.name}",
-                                Toast.LENGTH_LONG
-                            ).show()
+                            Log.d("SignUp", "Usuario recibido: id=${usuario.id}, name=${usuario.name}, email=${usuario.email}")
 
-                            // Navegar automáticamente a HomeActivity y cerrar esta
-                            val intent = Intent(this@SignUpActivity, HomeActivity::class.java)
-                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                            startActivity(intent)
+                            // LOGIN AUTOMÁTICO TRAS REGISTRO
+                            val loginRequest = LoginRequest(email = usuario.email, password = password)
+                            val publicAuthService = RetrofitClient.createAuthService(this@SignUpActivity)
+                            publicAuthService.login(loginRequest).enqueue(object : Callback<LoginResponse> {
+                                override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                                    if (response.isSuccessful && response.body() != null) {
+                                        val authToken = response.body()!!.authToken
+                                        // Guarda el token en SharedPreferences
+                                        val prefsSession = getSharedPreferences("session", MODE_PRIVATE)
+                                        prefsSession.edit().putString("jwt_token", authToken).apply()
+
+                                        Toast.makeText(
+                                            this@SignUpActivity,
+                                            "¡Registro exitoso! Bienvenido ${usuario.name}",
+                                            Toast.LENGTH_LONG
+                                        ).show()
+
+                                        // Navegar automáticamente a HomeActivity y cerrar esta
+                                        val intent = Intent(this@SignUpActivity, HomeActivity::class.java)
+                                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                        startActivity(intent)
+                                    } else {
+                                        Toast.makeText(
+                                            this@SignUpActivity,
+                                            "No se pudo iniciar sesión tras registrarte. Revisa tus datos.",
+                                            Toast.LENGTH_LONG
+                                        ).show()
+                                    }
+                                }
+
+                                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                                    Toast.makeText(
+                                        this@SignUpActivity,
+                                        "Error de red en login automático: ${t.message}",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            })
+
                         } else {
                             // Mejor manejo de mensajes de error
                             val errorBody = response.errorBody()?.string()
