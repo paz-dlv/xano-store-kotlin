@@ -59,7 +59,7 @@ class ProductDetailActivity : AppCompatActivity() { // La clase hereda de AppCom
         binding.tvProductStock.text = "Stock: ${product.stock}"
 
         // --- CONFIGURAR EL CARRUSEL DE IMÁGENES ---
-        product.images?.let { imageList ->
+        product.image?.let { imageList ->
             val imageUrls = imageList.mapNotNull { it.url }
             if (imageUrls.isNotEmpty()) {
                 val adapter = ImageSliderAdapter(imageUrls)

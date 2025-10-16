@@ -56,6 +56,11 @@ class SignUpActivity : AppCompatActivity() {
                 )
                 authService.signUp(request).enqueue(object : Callback<User> {
                     override fun onResponse(call: Call<User>, response: Response<User>) {
+
+                        // --- LOGS PARA DEPURAR ---
+                        Log.e("SignUp", "Response body: ${response.body()}")
+                        Log.e("SignUp", "Response error: ${response.errorBody()?.string()}")
+
                         if (response.isSuccessful && response.body() != null) {
                             val usuario = response.body()!!
 
