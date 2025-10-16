@@ -10,12 +10,15 @@ import com.miapp.xanostorekotlin.api.RetrofitClient
 import com.miapp.xanostorekotlin.model.RegisterUserRequest
 import com.miapp.xanostorekotlin.model.LoginRequest
 import com.miapp.xanostorekotlin.model.User
-import com.miapp.xanostorekotlin.model.LoginResponse
+import com.miapp.xanostorekotlin.model.AuthResponse
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import org.json.JSONObject
-import com.miapp.xanostorekotlin.ui.HomeActivity
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -69,20 +72,20 @@ class SignUpActivity : AppCompatActivity() {
 
                             Log.d("SignUp", "Usuario recibido: id=${usuario.id}, name=${usuario.name}, email=${usuario.email}")
 
-                            // LOGIN AUTOMÁTICO TRAS REGISTRO
-                            val loginRequest = LoginRequest(email = usuario.email, password = password)
-                            val publicAuthService = RetrofitClient.createAuthService(this@SignUpActivity)
-                            publicAuthService.login(loginRequest).enqueue(object : Callback<LoginResponse> {
-                                override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-                                    if (response.isSuccessful && response.body() != null) {
-                                        val authToken = response.body()!!.authToken
-                                        // Guarda el token en SharedPreferences
+                            // LOGIN AUTOMÁTICO TRAS REGISTRO (usando coroutine y suspend fun)
+                            CoroutineScope(Dispatchers.IO).launch {
+                                try {
+                                    val loginRequest = LoginRequest(email = usuario.email, password = password)
+                                    val loginResponse: AuthResponse = authService.login(loginRequest)
+
+                                    // Guarda el token en SharedPreferences
+                                    withContext(Dispatchers.Main) {
                                         val prefsSession = getSharedPreferences("session", MODE_PRIVATE)
-                                        prefsSession.edit().putString("jwt_token", authToken).apply()
+                                        prefsSession.edit().putString("jwt_token", loginResponse.authToken).apply()
 
                                         Toast.makeText(
                                             this@SignUpActivity,
-                                            "¡Registro exitoso! Bienvenido ${usuario.name}",
+                                            getString(R.string.register_success) + " " + usuario.name,
                                             Toast.LENGTH_LONG
                                         ).show()
 
@@ -90,26 +93,18 @@ class SignUpActivity : AppCompatActivity() {
                                         val intent = Intent(this@SignUpActivity, HomeActivity::class.java)
                                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                         startActivity(intent)
-                                    } else {
+                                    }
+                                } catch (e: Exception) {
+                                    withContext(Dispatchers.Main) {
                                         Toast.makeText(
                                             this@SignUpActivity,
-                                            "No se pudo iniciar sesión tras registrarte. Revisa tus datos.",
+                                            getString(R.string.error_login),
                                             Toast.LENGTH_LONG
                                         ).show()
                                     }
                                 }
-
-                                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                                    Toast.makeText(
-                                        this@SignUpActivity,
-                                        "Error de red en login automático: ${t.message}",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                }
-                            })
-
+                            }
                         } else {
-                            // Mejor manejo de mensajes de error
                             val errorBody = response.errorBody()?.string()
                             val errorMessage = parseErrorMessage(errorBody)
                             Toast.makeText(
@@ -123,7 +118,7 @@ class SignUpActivity : AppCompatActivity() {
                     override fun onFailure(call: Call<User>, t: Throwable) {
                         Toast.makeText(
                             this@SignUpActivity,
-                            "Error de red: ${t.message}",
+                            getString(R.string.error_network),
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -135,38 +130,37 @@ class SignUpActivity : AppCompatActivity() {
     // Extrae el mensaje de error para mostrarlo al usuario
     private fun parseErrorMessage(errorBody: String?): String {
         if (errorBody.isNullOrEmpty()) {
-            return "Error en el registro. Verifica tus datos."
+            return getString(R.string.error_registration)
         }
         return try {
             val json = JSONObject(errorBody)
             when {
                 json.has("message") && json.getString("message").contains("email", ignoreCase = true) &&
                         json.getString("message").contains("exists", ignoreCase = true) ->
-                    "El correo electrónico ya está registrado."
+                    getString(R.string.error_email_exists)
                 json.has("message") -> json.getString("message")
-                else -> "Error en el registro. Verifica tus datos."
+                else -> getString(R.string.error_registration)
             }
         } catch (e: Exception) {
-            // Si el error no es JSON, usa heurística simple
             if (errorBody.contains("email", ignoreCase = true) &&
                 errorBody.contains("exist", ignoreCase = true)) {
-                return "El correo electrónico ya está registrado."
+                return getString(R.string.error_email_exists)
             }
-            "Error en el registro. Verifica tus datos."
+            getString(R.string.error_registration)
         }
     }
 
     private fun validateFields(name: String, email: String, password: String, address: String, phone: String): Boolean {
         if (name.isEmpty() || email.isEmpty() || password.isEmpty() || address.isEmpty() || phone.isEmpty()) {
-            Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.error_fill_fields), Toast.LENGTH_SHORT).show()
             return false
         }
         if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            Toast.makeText(this, "Email inválido", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.error_invalid_email), Toast.LENGTH_SHORT).show()
             return false
         }
         if (password.length < 6) {
-            Toast.makeText(this, "La contraseña debe tener al menos 6 caracteres", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.error_password_short), Toast.LENGTH_SHORT).show()
             return false
         }
         return true
