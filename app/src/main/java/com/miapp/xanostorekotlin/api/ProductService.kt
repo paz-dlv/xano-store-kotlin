@@ -1,22 +1,20 @@
-package com.miapp.xanostorekotlin.api // Paquete del servicio de productos
+package com.miapp.xanostorekotlin.api
 
-import com.miapp.xanostorekotlin.model.CreateProductRequest // Import del modelo de request para crear producto
-import com.miapp.xanostorekotlin.model.CreateProductResponse // Import del modelo de respuesta de creación
-import com.miapp.xanostorekotlin.model.Product // Import del modelo de producto
-import retrofit2.http.Body // Import de anotación para el cuerpo de la solicitud
-import retrofit2.http.GET // Import de anotación para métodoo HTTP GET
-import retrofit2.http.POST // Import de anotación para métodoo HTTP POST
+import com.miapp.xanostorekotlin.model.CreateProductRequest
+import com.miapp.xanostorekotlin.model.Product
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Body
 
 /**
  * ProductService
- * Endpoints de productos: listar y crear.
- * Base URL usada: ApiConfig.storeBaseUrl
- * Todas las líneas comentadas para explicar cada elemento.
+ * Interfaz de Retrofit para obtener y crear productos usando corrutinas.
+ * Los métodos devuelven directamente los modelos, NO Call<>.
  */
-interface ProductService { // Declaramos interfaz de Retrofit para productos
-    @GET("product") // Definimos endpoint GET /products
-    suspend fun getProducts(): List<Product> // Métodoo suspend que devuelve lista de productos
+interface ProductService {
+    @GET("products")
+    suspend fun getProducts(): List<Product> // Devuelve una lista de productos
 
-    @POST("product") // Definimos endpoint POST /products
-    suspend fun createProduct(@Body request: CreateProductRequest): CreateProductResponse // Métodoo suspend para crear producto, con cuerpo JSON
+    @POST("products")
+    suspend fun addProduct(@Body product: CreateProductRequest): Product // Crea y devuelve el producto creado
 }

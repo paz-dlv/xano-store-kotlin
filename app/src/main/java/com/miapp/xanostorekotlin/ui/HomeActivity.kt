@@ -1,66 +1,56 @@
-package com.miapp.xanostorekotlin.ui // Paquete de la Activity principal de la app
+package com.miapp.xanostorekotlin.ui
 
-import android.content.Intent // Import para navegación entre activities
-import android.os.Bundle // Import para ciclo de vida de Activity y estado
-import androidx.appcompat.app.AppCompatActivity // Import de la Activity base con compatibilidad
-import androidx.fragment.app.Fragment // Import de la clase Fragment (para transacciones)
-import com.miapp.xanostorekotlin.api.TokenManager // Import de nuestra clase para gestionar token/usuario
-import com.miapp.xanostorekotlin.databinding.ActivityHomeBinding // Import del ViewBinding del layout activity_home.xml
-import com.miapp.xanostorekotlin.ui.fragments.AddProductFragment // Import del fragmento para agregar productos
-import com.miapp.xanostorekotlin.ui.fragments.ProductsFragment // Import del fragmento que lista productos
-import com.miapp.xanostorekotlin.ui.fragments.ProfileFragment // Import del fragmento de perfil
+import android.content.Intent
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.miapp.xanostorekotlin.api.TokenManager
+import com.miapp.xanostorekotlin.databinding.ActivityHomeBinding
+import com.miapp.xanostorekotlin.ui.fragments.AddProductFragment
+import com.miapp.xanostorekotlin.ui.fragments.ProductsFragment
+import com.miapp.xanostorekotlin.ui.fragments.ProfileFragment
 
-/**
- * HomeActivity
- *
- * Explicación:
- * - Muestra un saludo con el nombre del usuario logeado.
- * - Contiene un BottomNavigationView para navegar entre 3 fragments:
- *   Perfil, Productos y Agregar Producto.
- * - No usamos Navigation Component para mantenerlo sencillo; hacemos transacciones manuales.
- * - Ahora valida que el usuario esté presente, si no redirige a MainActivity (login).
- */
-class HomeActivity : AppCompatActivity() { // Declaramos la Activity Home, que gestiona los fragments
+class HomeActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityHomeBinding // Referencia al ViewBinding para acceder a vistas
-    private lateinit var tokenManager: TokenManager // Manejador de token y datos de usuario
+    private lateinit var binding: ActivityHomeBinding
+    private lateinit var tokenManager: TokenManager
 
-    override fun onCreate(savedInstanceState: Bundle?) { // Métodoo de ciclo de vida: se llama al crear la Activity
-        super.onCreate(savedInstanceState) // Llamamos a la implementación base
-        binding = ActivityHomeBinding.inflate(layoutInflater) // Inflamos el layout a través de ViewBinding
-        setContentView(binding.root) // Establecemos la vista raíz del binding como contenido de la Activity
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        tokenManager = TokenManager(this) // Inicializamos el TokenManager con el contexto de la Activity
+        tokenManager = TokenManager(this)
 
-        // --- Validación de usuario ---
-        val prefs = getSharedPreferences("user_session", MODE_PRIVATE) // Accedemos a la sesión guardada
-        val userName = prefs.getString("name", null) // Recuperamos el nombre de usuario
-        if (userName.isNullOrBlank()) { // Si no hay usuario, volvemos al login
-            val intent = Intent(this, MainActivity::class.java) // Creamos el Intent para ir a MainActivity
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // Limpiamos el stack de navegación
-            startActivity(intent) // Iniciamos MainActivity
-            finish() // Cerramos esta Activity
-            return // Salimos de onCreate
+        // Validación de usuario
+        val prefs = getSharedPreferences("user_session", MODE_PRIVATE)
+        val userName = prefs.getString("name", null)
+        if (userName.isNullOrBlank()) {
+            startActivity(Intent(this, MainActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            })
+            finish()
+            return
         }
 
-        binding.tvWelcome.text = "Bienvenido $userName" // Mostramos saludo con el nombre del usuario
+        binding.tvWelcome.text = "Bienvenido $userName"
 
-        // Cargamos inicialmente el fragmento de Productos
-        replaceFragment(ProductsFragment()) // Reemplazamos el contenedor por el fragmento de productos
+        // Cargar fragmento inicial
+        replaceFragment(ProductsFragment())
 
-        binding.bottomNav.setOnItemSelectedListener { item -> // Listener para navegación inferior
-            when (item.itemId) { // Decidimos qué fragment mostrar según el ítem
-                com.miapp.xanostorekotlin.R.id.nav_profile -> replaceFragment(ProfileFragment()) // Ir al perfil
-                com.miapp.xanostorekotlin.R.id.nav_products -> replaceFragment(ProductsFragment()) // Ir a productos
-                com.miapp.xanostorekotlin.R.id.nav_add -> replaceFragment(AddProductFragment()) // Ir a agregar producto
+        binding.bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                com.miapp.xanostorekotlin.R.id.nav_profile -> replaceFragment(ProfileFragment())
+                com.miapp.xanostorekotlin.R.id.nav_products -> replaceFragment(ProductsFragment())
+                com.miapp.xanostorekotlin.R.id.nav_add -> replaceFragment(AddProductFragment())
             }
-            true // Devolvemos true para indicar que el evento fue manejado
+            true
         }
     }
 
-    private fun replaceFragment(fragment: Fragment) { // Función auxiliar para reemplazar el fragment actual
-        supportFragmentManager.beginTransaction() // Iniciamos una transacción de fragmentos
-            .replace(binding.fragmentContainer.id, fragment) // Reemplazamos el contenedor con el fragmento dado
-            .commit() // Confirmamos la transacción
+    private fun replaceFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(binding.fragmentContainer.id, fragment)
+            .commit()
     }
 }

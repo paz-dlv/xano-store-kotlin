@@ -3,39 +3,22 @@ package com.miapp.xanostorekotlin.model // Paquete de modelos de datos
 /**
  * Product
  * Modelo de datos que representa un producto.
- * ACTUALIZADO para coincidir con la respuesta real de la API de Xano.
- * La estructura ahora incluye una lista de imágenes anidadas.
+ * Coincide con la respuesta real de la API de Xano y la estructura de la base de datos.
  */
-data class Product( // data class: genera automáticamente métodos útiles como equals, hashCode, toString, y copy.
-    // Identificador único del producto, viene como un número entero del JSON.
-    val id: Int,
-
-    // Nombre del producto.
-    val title: String,
-
-    // Autor del producto.
-    val author: String,
-
-    // Género del producto.
-    val genre: String,
-
-    // Descripción del producto.
-    val description: String?,
-
-    // Precio del producto (decimal).
-    val price: Double,
-
-    // Stock disponible del producto.
-    val stock: Int,
-
-    // ¡¡CAMBIO FUNDAMENTAL!!
-    // La API no devuelve 'image_url', sino una lista llamada 'images'.
-    // Esta propiedad ahora es una lista de objetos 'ProductImage'. Puede ser nula si no hay imágenes.
-    val images: List<ProductImage>?
-) : java.io.Serializable // <-- AÑADE ESTO
+data class Product(
+    val id: Int,                           // Identificador único del producto
+    val created_at: String,                // Fecha de creación (timestamp como String)
+    val title: String,                     // Título del producto/libro
+    val author: String,                    // Autor
+    val genre: String,                     // Género
+    val description: String?,              // Descripción (puede ser nula)
+    val price: Double,                     // Precio
+    val stock: Int,                        // Stock disponible
+    val image: List<ProductImage>?         // Lista de imágenes asociadas (puede ser nula)
+) : java.io.Serializable
 
 /**
  * ProductImage
- * Modelo de datos para el objeto anidado dentro de la lista "images".
+ * Modelo de datos para el objeto anidado dentro de la lista "image".
  * Representa una única imagen asociada a un producto.
  */

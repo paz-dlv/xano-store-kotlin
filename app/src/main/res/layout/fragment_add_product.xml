@@ -12,50 +12,101 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Campo para el Nombre del producto -->
+        <!-- Título del libro -->
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nombre del Producto">
+            android:hint="Título del libro"
+            app:boxStrokeColor="@color/colorPrimary">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etName"
+                android:id="@+id/etTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapWords" />
+                android:hint="Ej: El Principito"
+                android:inputType="textCapWords"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- ¡AÑADIDO! Campo para la Descripción del producto -->
+        <!-- Autor del libro -->
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Autor"
             android:layout_marginTop="8dp"
-            android:hint="Descripción">
+            app:boxStrokeColor="@color/colorPrimary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etAuthor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ej: Antoine de Saint-Exupéry"
+                android:inputType="textCapWords"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Género -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Género"
+            android:layout_marginTop="8dp"
+            app:boxStrokeColor="@color/colorPrimary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etGenre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ej: Literatura Infantil"
+                android:inputType="textCapWords"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Descripción -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Descripción"
+            android:layout_marginTop="8dp"
+            app:boxStrokeColor="@color/colorPrimary">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Describe el libro"
                 android:inputType="textMultiLine"
                 android:minLines="3"
                 android:gravity="top"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- ¡AÑADIDO! Campo para el Precio del producto -->
+        <!-- Precio -->
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Precio"
             android:layout_marginTop="8dp"
-            android:hint="Precio">
+            app:boxStrokeColor="@color/colorPrimary">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal" />
+                android:hint="Ej: 9990"
+                android:inputType="numberDecimal"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Stock -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Stock"
+            android:layout_marginTop="8dp"
+            app:boxStrokeColor="@color/colorPrimary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etStock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ej: 25"
+                android:inputType="number"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Botón para seleccionar imágenes -->
@@ -65,7 +116,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Seleccionar Imágenes" />
+            android:text="Seleccionar Imágenes"/>
 
         <!-- RecyclerView para mostrar la vista previa de las imágenes seleccionadas -->
         <androidx.recyclerview.widget.RecyclerView
@@ -78,7 +129,7 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="3"
             tools:listitem="@layout/item_image_preview"
-            tools:visibility="visible" />
+            tools:visibility="visible"/>
 
         <!-- Botón de Enviar -->
         <com.google.android.material.button.MaterialButton
@@ -86,7 +137,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Crear Producto" />
+            android:text="Crear Libro"/>
 
         <!-- Barra de Progreso -->
         <ProgressBar
@@ -95,7 +146,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
-            android:visibility="gone" />
-
+            android:visibility="gone"/>
     </LinearLayout>
 </ScrollView>

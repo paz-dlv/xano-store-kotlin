@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.miapp.xanostorekotlin.R
+import com.miapp.xanostorekotlin.api.ApiConfig
 import com.miapp.xanostorekotlin.api.RetrofitClient
 import com.miapp.xanostorekotlin.model.RegisterUserRequest
 import com.miapp.xanostorekotlin.model.LoginRequest
@@ -49,7 +50,10 @@ class SignUpActivity : AppCompatActivity() {
                     phone = phone
                 )
 
-                val authService = RetrofitClient.createAuthService(this)
+                val authService = RetrofitClient.createAuthService(
+                    context = this,
+                    baseUrl = ApiConfig.authBaseUrl
+                )
                 authService.signUp(request).enqueue(object : Callback<User> {
                     override fun onResponse(call: Call<User>, response: Response<User>) {
                         if (response.isSuccessful && response.body() != null) {
