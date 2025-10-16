@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.miapp.xanostorekotlin.api.ApiConfig
 import com.miapp.xanostorekotlin.api.RetrofitClient
 import com.miapp.xanostorekotlin.api.TokenManager
 import com.miapp.xanostorekotlin.databinding.ActivityMainBinding
@@ -58,7 +59,11 @@ class MainActivity : AppCompatActivity() {
 
             lifecycleScope.launch {
                 try {
-                    val publicAuthService = RetrofitClient.createAuthService(this@MainActivity)
+                    // CORRECCIÓN: Debes pasar el baseUrl aquí
+                    val publicAuthService = RetrofitClient.createAuthService(
+                        context = this@MainActivity,
+                        baseUrl = ApiConfig.authBaseUrl
+                    )
                     val loginResponse = withContext(Dispatchers.IO) {
                         publicAuthService.login(LoginRequest(email = email, password = password))
                     }
@@ -69,7 +74,11 @@ class MainActivity : AppCompatActivity() {
                         apply()
                     }
 
-                    val privateAuthService = RetrofitClient.createAuthService(this@MainActivity, requiresAuth = true)
+                    // CORRECCIÓN: Usa el baseUrl también aquí
+                    val privateAuthService = RetrofitClient.createAuthService(
+                        context = this@MainActivity,
+                        baseUrl = ApiConfig.authBaseUrl // Si necesitas token, configura el interceptor en RetrofitClient
+                    )
                     val userProfile = withContext(Dispatchers.IO) {
                         privateAuthService.getMe()
                     }
