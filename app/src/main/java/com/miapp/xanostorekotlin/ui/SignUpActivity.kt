@@ -55,11 +55,11 @@ class SignUpActivity : AppCompatActivity() {
                                 putString("name", usuario.name)
                                 putString("email", usuario.email)
                                 putString("phone", usuario.phone)
-                                putString("shipping_address", usuario.shippingAddress)
-                                putString("role", usuario.role)
-                                putString("status", usuario.status)
-                                putString("lastname", usuario.lastname)
-                                putString("created_at", usuario.createdAt.toString())
+                                putString("shipping_address", usuario.shippingAddress ?: "")
+                                putString("role", usuario.role ?: "")
+                                putString("status", usuario.status ?: "")
+                                putString("lastname", usuario.lastname ?: "")
+                                putString("created_at", usuario.createdAt?.toString() ?: "")
                                 apply()
                             }
 
