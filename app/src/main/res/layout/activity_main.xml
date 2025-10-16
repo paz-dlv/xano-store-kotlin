@@ -56,7 +56,6 @@
                 android:text="Iniciar sesión"
                 android:textColor="@color/colorPrimary"
                 android:textSize="24sp"
-                android:textStyle="bold"
                 android:textStyle="italic" />
 
             <!-- Email -->
