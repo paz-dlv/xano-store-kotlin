@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.miapp.xanostorekotlin.SignUpActivity
 import com.miapp.xanostorekotlin.api.RetrofitClient
 import com.miapp.xanostorekotlin.api.TokenManager
 import com.miapp.xanostorekotlin.databinding.ActivityMainBinding
