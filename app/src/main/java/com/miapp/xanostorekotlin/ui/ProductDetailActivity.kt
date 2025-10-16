@@ -61,7 +61,7 @@ class ProductDetailActivity : AppCompatActivity() { // La clase hereda de AppCom
 
         // --- CONFIGURAR LOS TEXTOS ---
         // Asigna el nombre del producto al TextView correspondiente.
-        binding.tvProductName.text = "Nombre: ${product.name}"
+        binding.tvProductName.text = "Nombre: ${product.title}"
         // Asigna el precio. Usa 'let' para formatear el texto solo si el precio no es nulo. Si es nulo, muestra un texto alternativo.
         binding.tvProductPrice.text = product.price?.let { "Precio: $it" } ?: "Precio no disponible"
         // Asigna la descripción. Si es nula, usa el operador Elvis (?:) para mostrar "Sin descripción.".
@@ -71,7 +71,7 @@ class ProductDetailActivity : AppCompatActivity() { // La clase hereda de AppCom
 
         // --- CONFIGURAR EL CARRUSEL DE IMÁGENES ---
         // Usa 'let' para ejecutar este bloque solo si la lista de imágenes del producto no es nula.
-        product.images?.let { imageList ->
+        product.image?.let { imageList ->
             // ¡¡¡CORRECCIÓN CLAVE AQUÍ!!!
             // Usamos 'mapNotNull' en lugar de 'map'.
             // 'mapNotNull' transformará la lista a una lista de URLs y, al mismo tiempo,

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.miapp.xanostorekotlin.databinding.ItemImageSliderBinding
 
-class ImageSliderAdapter(private val images: List<String>) :
+class ImageSliderAdapter(private val image: List<String>) :
     RecyclerView.Adapter<ImageSliderAdapter.ImageViewHolder>() {
 
     // El ViewHolder contiene la vista de una sola imagen del carrusel.
@@ -19,7 +19,7 @@ class ImageSliderAdapter(private val images: List<String>) :
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         // Obtenemos la URL de la imagen en la posición actual.
-        val imageUrl = images[position]
+        val imageUrl = image[position]
         // Usamos Coil para cargar la imagen en el ImageView.
         holder.binding.imageView.load(imageUrl) {
             placeholder(android.R.drawable.ic_menu_gallery)
@@ -28,5 +28,5 @@ class ImageSliderAdapter(private val images: List<String>) :
     }
 
     // El carrusel tendrá tantas páginas como imágenes haya en la lista.
-    override fun getItemCount(): Int = images.size
+    override fun getItemCount(): Int = image.size
 }

@@ -11,7 +11,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.miapp.xanostorekotlin.api.RetrofitClient
-import com.miapp.xanostorekotlin.api.ApiConfig
 import com.miapp.xanostorekotlin.databinding.FragmentAddProductBinding
 import com.miapp.xanostorekotlin.model.CreateProductRequest
 import com.miapp.xanostorekotlin.model.ProductImage
@@ -78,14 +77,19 @@ class AddProductFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             try {
-                val uploadedImages = mutableListOf<ProductImage>()
+                // FASE 1: Subida de imágenes
+                val upload = mutableListOf<ProductImage>()
                 if (selectedImageUris.isNotEmpty()) {
                     val uploadTasks = selectedImageUris.map { uri ->
                         async(Dispatchers.IO) { uploadImage(uri) }
                     }
                     val results = uploadTasks.awaitAll()
-                    uploadedImages.addAll(results.filterNotNull())
+                    upload.addAll(results.filterNotNull())
                 }
+
+                // FASE 2: Creación del producto
+                val service = RetrofitClient.createProductService(requireContext())
+                val imageList: List<ProductImage>? = if (upload.isNotEmpty()) upload else null
 
                 val req = CreateProductRequest(
                     title = title,
@@ -94,11 +98,11 @@ class AddProductFragment : Fragment() {
                     description = description,
                     price = price,
                     stock = stock,
-                    image = if (uploadedImages.isNotEmpty()) uploadedImages else null
+                    image = imageList
                 )
 
-                val service = RetrofitClient.createProductService(requireContext(), ApiConfig.storeBaseUrl)
-                val resp = withContext(Dispatchers.IO) { service.addProduct(req) }
+                Log.d("AddProductFragment", "Enviando petición para crear producto: $req")
+                val resp = withContext(Dispatchers.IO) { service.createProduct(req) }
                 if (resp != null) {
                     Toast.makeText(requireContext(), "Producto creado exitosamente", Toast.LENGTH_SHORT).show()
                     clearForm()
@@ -124,7 +128,7 @@ class AddProductFragment : Fragment() {
             val requestBody = bytes.toRequestBody(contentResolver.getType(uri)?.toMediaTypeOrNull())
             val part = MultipartBody.Part.createFormData("content", "image.jpg", requestBody)
 
-            val uploadService = RetrofitClient.createUploadService(requireContext(), ApiConfig.storeBaseUrl)
+            val uploadService = RetrofitClient.createUploadService(requireContext())
             val imageList: List<ProductImage> = uploadService.uploadImage(part)
             imageList.firstOrNull()
         } catch (e: Exception) {

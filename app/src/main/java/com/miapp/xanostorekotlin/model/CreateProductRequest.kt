@@ -27,24 +27,16 @@ import com.miapp.xanostorekotlin.model.ProductImage
 data class CreateProductRequest(
     // El nombre del producto. Es de tipo 'String' (no opcional).
     // GSON lo convertirá a: "name": "Teclado Mecánico"
-    val name: String,
 
     val title: String,
 
     val author: String,
 
-
     val genre: String,
 
-    // La descripción del producto. Es de tipo 'String?' (opcional, puede ser nulo).
-    // Si es nulo, GSON lo omitirá del JSON final (o lo enviará como 'null' dependiendo de la configuración).
-    // GSON lo convertirá a: "description": "Switches red..."
     val description: String?,
 
-    // El precio del producto. Es de tipo 'Int?' (opcional, puede ser nulo).
-    // GSON lo convertirá a: "price": 59990
     val price: Double?,
-
 
     val stock: Int,
 
@@ -54,5 +46,5 @@ data class CreateProductRequest(
     // - List: Espera un array JSON.
     // - <ProductImage>: Cada elemento de ese array debe ser un objeto de imagen completo (con path, name, type, etc.).
     // - ?: El campo "images" en sí mismo es opcional. Si no se suben imágenes, podemos enviar 'null'.
-    val images: List<ProductImage>?
+    val image: List<ProductImage>?
 )

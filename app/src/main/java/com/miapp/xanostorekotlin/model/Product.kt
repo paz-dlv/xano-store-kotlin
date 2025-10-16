@@ -29,7 +29,7 @@ data class Product( // data class: genera automáticamente métodos útiles como
     // ¡¡CAMBIO FUNDAMENTAL!!
     // La API no devuelve 'image_url', sino una lista llamada 'images'.
     // Esta propiedad ahora es una lista de objetos 'ProductImage'. Puede ser nula si no hay imágenes.
-    val images: List<ProductImage>?
+    val image: List<ProductImage>?
 ) : java.io.Serializable // <-- AÑADE ESTO
 
 /**
