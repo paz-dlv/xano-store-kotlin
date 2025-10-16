@@ -15,6 +15,7 @@ class TokenManager(context: Context) { // Clase que encapsula el acceso a Shared
     private val prefs: SharedPreferences =
         context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
+    // ¡¡CAMBIO AQUÍ!!
     // Esta variable contendrá el token en memoria durante el proceso de login.
     var currentToken: String? = null
         private set // La hacemos de solo lectura desde fuera
@@ -24,7 +25,6 @@ class TokenManager(context: Context) { // Clase que encapsula el acceso a Shared
         currentToken = prefs.getString(KEY_TOKEN, null)
     }
 
-    // Guarda el token y datos básicos de usuario en SharedPreferences
     fun saveAuth(token: String, userName: String, userEmail: String) {
         currentToken = token // Actualizamos la variable en memoria
         prefs.edit().apply {
@@ -35,15 +35,15 @@ class TokenManager(context: Context) { // Clase que encapsula el acceso a Shared
         }
     }
 
-    // El interceptor usará este método, que devuelve el token en memoria si existe.
-    fun getToken(): String? = currentToken
+    // El interceptor usará este métodoo, que ahora devolverá el token en memoria si existe.
+    fun getToken(): String? {
+        return currentToken
+    }
 
-    // Acceso a nombre y email guardados
     fun getUserName(): String? = prefs.getString(KEY_USER_NAME, null)
     fun getUserEmail(): String? = prefs.getString(KEY_USER_EMAIL, null)
     fun isLoggedIn(): Boolean = getToken() != null
 
-    // Limpia todo (logout)
     fun clear() {
         currentToken = null // Limpiamos la variable en memoria
         prefs.edit().clear().apply()

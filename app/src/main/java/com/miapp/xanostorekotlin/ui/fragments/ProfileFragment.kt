@@ -1,6 +1,5 @@
 package com.miapp.xanostorekotlin.ui.fragments // Declaramos el paquete donde vive este fragmento
 
-import android.content.Context // Import para acceder a SharedPreferences
 import android.content.Intent // Import para crear Intents al navegar entre Activities
 import android.os.Bundle // Import para manejar el ciclo de vida y estado guardado
 import android.view.LayoutInflater // Import para inflar layouts XML
@@ -37,12 +36,7 @@ class ProfileFragment : Fragment() { // Declaramos la clase del fragmento que he
         binding.tvEmail.text = tm.getUserEmail() // Asignamos el email del usuario al TextView correspondiente
 
         binding.btnLogout.setOnClickListener { // Asociamos un listener al botón de Cerrar sesión
-            tm.clear() // Limpiamos token y datos del usuario de SharedPreferences (depende de tu implementación)
-
-            // Limpiamos también los datos del usuario en user_session (muy importante)
-            val prefs = requireActivity().getSharedPreferences("user_session", Context.MODE_PRIVATE) // Accedemos a SharedPreferences user_session
-            prefs.edit().clear().apply() // Borramos todos los datos del usuario
-
+            tm.clear() // Limpiamos token y datos del usuario de SharedPreferences
             // Creamos un Intent para ir a MainActivity (pantalla de login)
             val intent = Intent(requireContext(), MainActivity::class.java) // Intent explícito hacia MainActivity
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK) // Limpiamos el back stack para que no se pueda volver con atrás

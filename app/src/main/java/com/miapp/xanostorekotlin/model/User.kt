@@ -2,6 +2,11 @@ package com.miapp.xanostorekotlin.model
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * User
+ * Modelo básico de usuario según lo esperado por la API de Xano.
+ * Ajusta los campos si tu API devuelve otros nombres.
+ */
 data class User(
     @SerializedName("id")
     val id: Int,
@@ -12,21 +17,7 @@ data class User(
     @SerializedName("email")
     val email: String,
 
+    // El campo "created_at" también se puede incluir si lo necesitas
     @SerializedName("created_at")
-    val createdAt: String, // O String si Xano devuelve un ISO timestamp
-
-    @SerializedName("lastname")
-    val lastname: String,
-
-    @SerializedName("role")
-    val role: String,
-
-    @SerializedName("status")
-    val status: String,
-
-    @SerializedName("shipping_address")
-    val shippingAddress: String,
-
-    @SerializedName("phone")
-    val phone: String
+    val createdAt: Long
 )
