@@ -95,21 +95,6 @@
                 style="?android:attr/progressBarStyleLarge"
                 android:layout_marginBottom="16dp"/>
 
-            <!-- Link: ¿Olvidaste tu contraseña? -->
-            <TextView
-                android:id="@+id/tvForgotPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="¿Olvidaste tu contraseña?"
-                android:textColor="@color/colorPrimary"
-                android:textSize="15sp"
-                android:fontFamily="@font/cute_dino"
-                android:layout_gravity="center_horizontal"
-                android:clickable="true"
-                android:focusable="true"
-                android:padding="8dp"
-                android:layout_marginBottom="10dp"/>
-
             <!-- Link: ¿No tienes cuenta? Regístrate -->
             <TextView
                 android:id="@+id/tvSignUpLink"

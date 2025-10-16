@@ -7,7 +7,6 @@
     <string name="email_hint">Correo electrónico</string>
     <string name="password_hint">Contraseña</string>
     <string name="login_button">Iniciar sesión</string>
-    <string name="forgot_password">¿Olvidaste tu contraseña?</string>
     <string name="no_account">¿No tienes cuenta? Regístrate</string>
 
     <!-- Signup Screen -->
