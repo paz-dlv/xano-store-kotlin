@@ -66,6 +66,8 @@ dependencies { // Dependencias del módulo
     implementation(libs.coil)
     implementation(libs.androidx.activity)
     implementation(libs.mediation.test.suite)
+    implementation(libs.play.services.analytics.impl)
+    implementation(libs.firebase.firestore.ktx)
 
     testImplementation(libs.junit) // Unit testing con JUnit4
     androidTestImplementation(libs.androidx.junit) // Testing instrumentado (JUnit ext)

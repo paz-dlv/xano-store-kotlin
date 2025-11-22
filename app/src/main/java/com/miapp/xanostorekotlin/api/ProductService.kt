@@ -1,5 +1,6 @@
 package com.miapp.xanostorekotlin.api // Paquete del servicio de productos
 
+import com.google.android.gms.analytics.ecommerce.Product
 import com.miapp.xanostorekotlin.model.CreateProductRequest // Import del modelo de request para crear producto
 import com.miapp.xanostorekotlin.model.CreateProductResponse // Import del modelo de respuesta de creación
 import com.miapp.xanostorekotlin.model.Product // Import del modelo de producto
